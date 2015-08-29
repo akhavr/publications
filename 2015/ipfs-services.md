@@ -1,3 +1,5 @@
+# Creating a useful IPFS service
+
 IPFS provides great vehicle to create distributed and fault-tolerant 
 services, yet it's not obvious how convenient web or blockchain 
 architectures would translate to this environment.
@@ -62,21 +64,5 @@ Client nodes render the chat to user themselves.
 
 Client nodes post the message to the chat by calling the central node. [Making your own ipfs service](http://gateway.ipfs.io/ipfs/QmTkzDwWqPbnAh5YiV5VwcTLnGdwSNsNTn2aDxdXBFca7D/example#/ipfs/QmThrNbvLj7afQZhxH72m5Nn1qiVn3eMKWFYV49Zp2mv9B/api/service/readme.md).  The central node returns the hash of an updated chat page and updates the name in the ipns.
 
-Clients periodically check if there was an update by resolving ipns entry - AKA poll updates.  See next section on how we may do it as "push updates".
-
-##  Decentralized chat service
-
-Same as above, with two distinctions:
-- each client node can also serve as a central node
-- in case of a message list fork, nodes resolve it by consensus 
-  merging
-
-To achieve this, each client maintains a peers list.
-
-When a client posts a message, it
-
-1. Updates his local message list and the ipns entry
-1. Calls his peers to update them
-1. If a peer returns a list, that has different messages than the local node got, then merge the list and repeat
-
+Clients periodically check if there was an update by resolving ipns entry - AKA poll updates.  See the upcoming post on how we may do it as "push updates".
 
