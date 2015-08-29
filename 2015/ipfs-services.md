@@ -60,7 +60,7 @@ Clients have the central node hardcoded and resolve its name to a chat list:
 
 Client nodes render the chat to user themselves.
 
-Client node posts the message to the chat by calling central node [Making your own ipfs service](http://gateway.ipfs.io/ipfs/QmTkzDwWqPbnAh5YiV5VwcTLnGdwSNsNTn2aDxdXBFca7D/example#/ipfs/QmThrNbvLj7afQZhxH72m5Nn1qiVn3eMKWFYV49Zp2mv9B/api/service/readme.md).  The central node returns the hash of an updated chat page and updates the name in the ipns.
+Client nodes post the message to the chat by calling the central node. [Making your own ipfs service](http://gateway.ipfs.io/ipfs/QmTkzDwWqPbnAh5YiV5VwcTLnGdwSNsNTn2aDxdXBFca7D/example#/ipfs/QmThrNbvLj7afQZhxH72m5Nn1qiVn3eMKWFYV49Zp2mv9B/api/service/readme.md).  The central node returns the hash of an updated chat page and updates the name in the ipns.
 
 Clients periodically check if there was an update by resolving ipns entry - AKA poll updates.  See next section on how we may do it as "push updates".
 
@@ -68,15 +68,15 @@ Clients periodically check if there was an update by resolving ipns entry - AKA 
 
 Same as above, with two distinctions:
 - each client node can also serve as a central node
-- in case of message list fork, nodes resolve it by consensus 
+- in case of a message list fork, nodes resolve it by consensus 
   merging
 
-To achieve this, client maintains a peers list.
+To achieve this, each client maintains a peers list.
 
-When client posts a message, it
+When a client posts a message, it
 
-1. Updates his local message list and ipns entry
+1. Updates his local message list and the ipns entry
 1. Calls his peers to update them
-1. If a peer returns a list, that has different entries, than local - merge and repeat
+1. If a peer returns a list, that has different messages than the local node got, then merge the list and repeat
 
 
